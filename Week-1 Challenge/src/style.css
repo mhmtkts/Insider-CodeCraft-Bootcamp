@@ -123,6 +123,26 @@ body {
     border-radius: 10px;
 }
 
+/* Bölümler */
+#episodes {
+    padding: 2rem;
+    text-align: center;
+}
+
+.episode-cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.episode-card {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 10px;
+    width: 30%;
+}
+
 
 @media screen and (max-width: 1025px) {
     .hamburger {
