@@ -68,7 +68,31 @@ body {
     transition: all 0.3s ease;
 }
 
-@media screen and (max-width: 768px) {
+/* Ana sayfa */
+#home {
+    padding-top: 80px;
+    text-align: center;
+}
+
+.banner img {
+    margin: 1rem;
+}
+
+.description {
+    margin: 2rem;
+}
+
+.banner-container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+} 
+
+
+
+
+@media screen and (max-width: 1025px) {
     .hamburger {
         display: flex;
     }
@@ -88,4 +112,20 @@ body {
     .nav-links.active {
         left: 0;
     }
+
+    .banner-container {
+        flex-direction: column;
+    }
+
+    .banner img {
+        width: 100%;
+        height: auto;
+    }
+
+    .description {
+        margin: 1rem;
+        padding: 0 1rem;
+        text-align: center;
+    }
+
 }
