@@ -143,6 +143,36 @@ body {
     width: 30%;
 }
 
+/* Favori Sahne */
+#favorite-scene {
+    padding: 2rem;
+    text-align: center;
+}
+
+.video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+
+#favorite-button {
+    background-color: #c41e3a;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-left: 50px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#favorite-button.active {
+    background-color: #b8860b;
+}
+
 
 @media screen and (max-width: 1025px) {
     .hamburger {
