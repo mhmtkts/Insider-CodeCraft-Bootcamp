@@ -34,6 +34,7 @@ body {
     color: #fff;
     text-decoration: none;
     transition: all 0.3s ease;
+    
 }
 
 .nav-links a:hover {
@@ -77,9 +78,11 @@ body {
 .banner img {
     margin: 1rem;
     border-radius: 2%;
+    ;
 }
 
 .description {
+    font-size: 1.2rem;
     margin: 2rem;
 }
 
@@ -104,7 +107,7 @@ body {
 }
 
 .character-card {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgb(48 9 9 / 80%);
     padding: 1rem;
     margin: 1rem;
     border-radius: 10px;
@@ -154,11 +157,12 @@ body {
     justify-content: center;
     align-items: center;
     margin-top: 1rem;
+    margin-left: 200px;
 }
 
 
 #favorite-button {
-    background-color: #c41e3a;
+    background-color: rgb(48 9 9 / 80%);
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -170,8 +174,27 @@ body {
 }
 
 #favorite-button.active {
-    background-color: #b8860b;
+    background-color: #aa7d0a;
 }
+
+/* Footer */
+footer {
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 1rem;
+    text-align: center;
+}
+
+.social-links a {
+    color: #fff;
+    margin: 0 0.5rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color:#FFD700;
+}
+
 
 
 @media screen and (max-width: 1025px) {
