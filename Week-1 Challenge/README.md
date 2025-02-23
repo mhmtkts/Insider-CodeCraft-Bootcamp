@@ -42,15 +42,15 @@ Proje tarayıcınızda açılarak kullanılabilir. Sayfa, mobil uyumlu olacak ş
 
 ## 📸 Ekran Görüntüleri
 
-<img alt="Ana Sayfa" src="https://imgur.com/gIaJdav">
+[https://imgur.com/iz9leCT](https://imgur.com/iz9leCT)
 
 ## 🤝 Katkıda Bulunma
 
-1.Bu projeyi fork edin
-2.Feature branch oluşturun (git checkout -b feature/yeniOzellik)
-3.Değişikliklerinizi commit edin (git commit -m 'Yeni özellik eklendi')
-4.Branch'inizi push edin (git push origin feature/yeniOzellik)
-5.Pull Request oluşturun
+1. Bu projeyi fork edin
+2. Feature branch oluşturun (`git checkout -b feature/yeniOzellik`)
+3. Değişikliklerinizi commit edin (`git commit -m 'Yeni özellik eklendi'`)
+4. Branch'inizi push edin (`git push origin feature/yeniOzellik`)
+5. Pull Request oluşturun
 
 ## 📧 İletişim
 
