@@ -38,13 +38,30 @@ body {
 }
 
 .nav-links a:hover {
-    color: #ffd700;
+    color: #aa7d0a;
 }
 
 .profile-icon {
     display: flex;
     align-items: center;
     margin-left: auto;
+}
+
+#play-music-button {
+    background: none; 
+    color: #fff;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    margin-right: 15px; /* Profil ikonunun metinden biraz uzaklaşması için */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#play-music-button svg {
+    width: 24px;
+    height: 24px;
 }
 
 .profile-icon img {
@@ -166,6 +183,12 @@ body {
     
 }
 
+#favorite-scene iframe {
+    width: 80%;
+    height: 500px;
+    border-radius: 10px;
+}
+
 
 #favorite-button {
     background-color: rgb(48 9 9 / 80%);
@@ -198,7 +221,7 @@ footer {
 }
 
 .social-links a:hover {
-    color:#FFD700;
+    color:#aa7d0a;
 }
 
 
@@ -257,6 +280,10 @@ footer {
     
     .video-container{
         flex-direction: column;
+    }
+
+    #favorite-scene iframe {
+        width: 100%;
     }
 
     #favorite-button {

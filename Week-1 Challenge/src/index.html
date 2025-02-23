@@ -25,6 +25,14 @@
             <li><a href="#favorite-scene">Favori Sahne</a></li>
         </ul>
         <div class="profile-icon">
+            <button id="play-music-button">
+                <svg id="play-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 5V19L19 12L8 5Z" fill="currentColor"/>
+                </svg>
+                <svg id="pause-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                    <path d="M6 19H10V5H6V19ZM14 5V19H18V5H14Z" fill="currentColor"/>
+                </svg>
+            </button>
             <img src="assets/images/boy.png" alt="">
             <span>Profil</span>
         </div>
@@ -115,5 +123,7 @@
             <a href="https://aktas.me" target="_blank">Portfolyo</a>
         </div>
     </footer>
+
+    <audio id="got-theme" src="assets/audio/Game-of-Thrones-Music.mp3" preload="auto"></audio>
 </body>
 </html>
