@@ -11,7 +11,7 @@ Bu proje, favori diziniz Game of Thrones'u tanıtan tek sayfalık bir web sitesi
 - CSS animasyonları ve transitionlar
 - Renk paleti ve tipografi uyumlu
 - Favori sahne bölümü ve YouTube videosu
-- Dizinin ana teması
+- Dizinin jenerik müziği
 
 
 ## 🛠️ Kullanılan Teknolojiler
