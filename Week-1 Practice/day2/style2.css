@@ -1,0 +1,182 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.credit-card-container {
+    width: 350px;
+    height: 200px;
+    perspective: 1000px;
+}
+
+.credit-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.8s;
+}
+
+.credit-card:hover {
+    transform: rotateY(180deg);
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.8s;
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.card-front {
+    background: linear-gradient(45deg, #1a1a1a, #333);
+}
+
+.card-back {
+    background: linear-gradient(45deg, #333, #1a1a1a);
+    transform: rotateY(180deg);
+}
+
+.card-top {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.bank-name {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.chip-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.chip {
+    width: 50px;
+    height: auto;
+}
+
+.card-number {
+    color: white;
+    font-size: 22px;
+    letter-spacing: 2px;
+    text-align: center;
+    margin: 15px 0;
+    font-family: "Courier New", monospace;
+}
+
+.card-details {
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    margin-top: 10px;
+}
+
+.card-holder,
+.expiry {
+    font-size: 12px;
+}
+
+.card-holder span,
+.expiry span {
+    display: block;
+    color: #ccc;
+    font-size: 10px;
+    margin-bottom: 5px;
+}
+
+/* Arka yüz stilleri */
+.magnetic-strip {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    height: 45px;
+    background: #000;
+}
+
+.cvv-box {
+    position: absolute;
+    top: 100px;
+    left: 20px; /* İmza alanı ve CVV kutusunu soldan başlatmak için */
+    width: 250px; /* Genişliği ayarladık */
+    height: 40px;
+    background: white;
+    border-radius: 4px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cvv-number {
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 10px; /* CVV numarasını sağa kaydırdık */
+}
+
+.signature {
+    flex-grow: 1;
+    height: 100%;
+    background: white;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 5px;
+    margin-right: 10px;
+}
+
+.signature-line {
+    width: 95%;
+    height: 1px;
+    background: blue;
+}
+
+.back-text {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    right: 20px;
+    color: #ccc;
+    font-size: 10px;
+    line-height: 1.4;
+}
+
+.lorem-text {
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    right: 20px;
+    color: #ccc;
+    font-size: 10px;
+    line-height: 1.4;
+}
