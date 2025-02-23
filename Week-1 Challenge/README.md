@@ -42,7 +42,7 @@ Proje tarayıcınızda açılarak kullanılabilir. Sayfa, mobil uyumlu olacak ş
 
 ## 📸 Ekran Görüntüleri
 
-[https://imgur.com/iz9leCT](https://imgur.com/iz9leCT)
+[https://imgur.com/gIaJdav](https://imgur.com/gIaJdav)
 
 ## 🤝 Katkıda Bulunma
 
