@@ -1,131 +1,214 @@
 <!DOCTYPE html>
 <html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Game of Thrones Fan Sayfası</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap"
+      rel="stylesheet"
+    />
     <script src="js/menu.js" defer></script>
-</head>
-<body>
+  </head>
+  <body>
     <!-- NavBar -->
     <nav class="navbar">
-        <div class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <ul class="nav-links">
-            <li><a href="#home">Ana Sayfa</a></li>
-            <li><a href="#characters">Karakterler</a></li>
-            <li><a href="#episodes">Bölümler</a></li>
-            <li><a href="#favorite-scene">Favori Sahne</a></li>
-        </ul>
-        <div class="profile-icon">
-            <button id="play-music-button">
-                <svg id="play-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8 5V19L19 12L8 5Z" fill="currentColor"/>
-                </svg>
-                <svg id="pause-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: none;">
-                    <path d="M6 19H10V5H6V19ZM14 5V19H18V5H14Z" fill="currentColor"/>
-                </svg>
-            </button>
-            <img src="assets/images/profileicon.jpg" alt="">
-            <span>Profil</span>
-        </div>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#home">Ana Sayfa</a></li>
+        <li><a href="#characters">Karakterler</a></li>
+        <li><a href="#episodes">Bölümler</a></li>
+        <li><a href="#favorite-scene">Favori Sahne</a></li>
+      </ul>
+      <div class="profile-icon">
+        <button id="play-music-button">
+          <svg
+            id="play-icon"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 3V15.55C11.84 15.47 11.67 15.4 11.5 15.35C10.67 15.09 9.78 15 9 15C6.24 15 4 17.24 4 20C4 22.76 6.24 25 9 25C11.76 25 14 22.76 14 20V8H18V3H12Z"
+              fill="currentColor"
+            />
+          </svg>
+          <svg
+            id="pause-icon"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            style="display: none"
+          >
+            <path d="M6 19H10V5H6V19ZM14 5V19H18V5H14Z" fill="currentColor" />
+          </svg>
+        </button>
+        <img src="assets/images/profileicon.jpg" alt="" />
+        <span>Profil</span>
+      </div>
     </nav>
 
     <!--Ana Sayfa-->
     <main>
-        <section id="home">
-            <h1><a href="https://www.imdb.com/title/tt0944947/" target="_blank">Game of Thrones</a></h1>
-            <div class="banner-container">
-                <div class="banner">
-                    <img src="assets/images/Game-of-Thrones.jpg" alt="Game of Thrones">
-                </div>
-                <p class="description">
-                    "Game of Thrones", George R.R. Martin'in "Buz ve Ateşin Şarkısı" serisinden uyarlanan, entrika ve güç mücadeleleriyle dolu bir epik fantezi dizisidir. Dizi, Westeros ve Essos adlı kurgusal kıtalarda geçer ve Demir Taht üzerinde hakimiyet kurmak isteyen soylu ailelerin karmaşık ilişkilerini ve çatışmalarını anlatır. Hikaye, Stark, Lannister ve Targaryen gibi hanelerin taht için verdikleri mücadeleleri işlerken, aynı zamanda duvarın ötesindeki mistik tehditler ve yaklaşan uzun kışın getirdiği tehlikeleri de gözler önüne serer. Siyasi entrikalar, ihanetler, savaşlar ve doğaüstü unsurların iç içe geçtiği bu destansı anlatı, izleyiciyi sürükleyici ve tahmin edilemez bir yolculuğa çıkarır.
-                </p>
-            </div>
-            
-        </section>
+      <section id="home">
+        <h1>
+          <a href="https://www.imdb.com/title/tt0944947/" target="_blank"
+            >Game of Thrones</a
+          >
+        </h1>
+        <div class="banner-container">
+          <div class="banner">
+            <img
+              src="assets/images/Game-of-Thrones.jpg"
+              alt="Game of Thrones"
+            />
+          </div>
+          <p class="description">
+            "Game of Thrones", George R.R. Martin'in "Buz ve Ateşin Şarkısı"
+            serisinden uyarlanan, entrika ve güç mücadeleleriyle dolu bir epik
+            fantezi dizisidir. Dizi, Westeros ve Essos adlı kurgusal kıtalarda
+            geçer ve Demir Taht üzerinde hakimiyet kurmak isteyen soylu
+            ailelerin karmaşık ilişkilerini ve çatışmalarını anlatır. Hikaye,
+            Stark, Lannister ve Targaryen gibi hanelerin taht için verdikleri
+            mücadeleleri işlerken, aynı zamanda duvarın ötesindeki mistik
+            tehditler ve yaklaşan uzun kışın getirdiği tehlikeleri de gözler
+            önüne serer. Siyasi entrikalar, ihanetler, savaşlar ve doğaüstü
+            unsurların iç içe geçtiği bu destansı anlatı, izleyiciyi sürükleyici
+            ve tahmin edilemez bir yolculuğa çıkarır.
+          </p>
+        </div>
+      </section>
 
-         <!-- Karakterler -->
-         <section id="characters">
-            <h2>Ana Karakterler</h2>
-            <div class="character-cards">
-                <div class="character-card">
-                    <img src="assets/images/kit-harington-Jon-Snow.webp" alt="Jon Snow">
-                    <h3>Jon Snow</h3>
-                    <p> Ned Stark’ın gayrimeşru oğlu olarak bilinir ve Gece Nöbetçileri’nin 998. Lord Kumandanı olur.</p>
-                </div>
-                <div class="character-card">
-                    <img src="assets/images/Daenerys.webp" alt="Daenerys Targaryen">
-                    <h3>Daenerys Targaryen</h3>
-                    <p>Targaryen Hanedanı’nın son varisi olarak bilinir ve "Ejderhaların Annesi" unvanına sahiptir.</p>
-                </div>
-                <div class="character-card">
-                    <img src="assets/images/Tyrion Lannister.webp" alt="Tyrion Lannister">
-                    <h3>Tyrion Lannister</h3>
-                    <p>Lannister Hanedanı’nın en zeki üyesi olarak tanınır. Fiziksel görünümü nedeniyle küçümsense de keskin zekasıyla öne çıkar.</p>
-                </div>
-            </div>
-        </section>
+      <!-- Karakterler -->
+      <section id="characters">
+        <h2>Ana Karakterler</h2>
+        <div class="character-cards">
+          <div class="character-card">
+            <img
+              src="assets/images/kit-harington-Jon-Snow.webp"
+              alt="Jon Snow"
+            />
+            <h3>Jon Snow</h3>
+            <p>
+              Ned Stark’ın gayrimeşru oğlu olarak bilinir ve Gece
+              Nöbetçileri’nin 998. Lord Kumandanı olur.
+            </p>
+          </div>
+          <div class="character-card">
+            <img src="assets/images/Daenerys.webp" alt="Daenerys Targaryen" />
+            <h3>Daenerys Targaryen</h3>
+            <p>
+              Targaryen Hanedanı’nın son varisi olarak bilinir ve "Ejderhaların
+              Annesi" unvanına sahiptir.
+            </p>
+          </div>
+          <div class="character-card">
+            <img
+              src="assets/images/Tyrion Lannister.webp"
+              alt="Tyrion Lannister"
+            />
+            <h3>Tyrion Lannister</h3>
+            <p>
+              Lannister Hanedanı’nın en zeki üyesi olarak tanınır. Fiziksel
+              görünümü nedeniyle küçümsense de keskin zekasıyla öne çıkar.
+            </p>
+          </div>
+        </div>
+      </section>
 
-        <!-- Favori Sahne -->
-        <section id="favorite-scene">
-            <h2>Favori Sahne</h2>
-            <p>Kızıl Düğün, beklenmedik ihanet ve acımasız katliamıyla dizinin en sarsıcı ve unutulmaz anlarından biridir.</p>
-            <div class="video-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/QbkXM9B0iz4?si=juRNyTEm4WOTcZtB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                <button id="favorite-button">Favorilere Ekle</button>
-            </div>
-            
-        </section>
+      <!-- Favori Sahne -->
+      <section id="favorite-scene">
+        <h2>Favori Sahne</h2>
+        <p>
+          Kızıl Düğün, beklenmedik ihanet ve acımasız katliamıyla dizinin en
+          sarsıcı ve unutulmaz anlarından biridir.
+        </p>
+        <div class="video-container">
+          <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/QbkXM9B0iz4?si=juRNyTEm4WOTcZtB"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+          <button id="favorite-button">Favorilere Ekle</button>
+        </div>
+      </section>
 
-        <!-- Bölümler -->
-        <section id="episodes">
-            <h2>Bölümler</h2>
-            <div class="episode-cards">
-                <div class="episode-card">
-                    <h3>7. Sezon Bölüm 8: The Spoils of War</h3>
-                    <p>Daenerys Targaryen'in Dothraki ordusu ve ejderhası Drogon ile Lannister ordusuna karşı düzenlediği sürpriz saldırıyı içerir.</p>
-                </div>
-                <div class="episode-card">
-                    <h3>6. Sezon Bölüm 9: Battle of the Bastards</h3>
-                    <p>Jon Snow ve Ramsay Bolton arasında Winterfell'in kontrolü için gerçekleşen destansı savaşı anlatır.</p>
-                </div>
-                <div class="episode-card">
-                    <h3>6. Sezon Bölüm 10: The Winds of Winter</h3>
-                    <p>Cersei Lannister'ın Büyük Sept'i yok etmesi ve Jon Snow'un gerçek kökenlerinin ortaya çıkması gibi önemli olayları içerir.</p>
-                </div>
-                <div class="episode-card">
-                    <h3>4. Sezon Bölüm 10: The Children</h3>
-                    <p>Arya Stark'ın Braavos'a yolculuğu, Tyrion Lannister'ın babası Tywin'i öldürmesi ve Bran Stark'ın Üç Gözlü Kuzgun ile buluşması gibi kritik gelişmeleri içerir.</p>
-                </div>
-                <div class="episode-card">
-                    <h3>5. Sezon Bölüm 8: Hardhome</h3>
-                    <p>Jon Snow'un Duvar'ın ötesindeki Hardhome'da Ak Gezenler ve onların ordusuyla yüzleştiği, gerilim dolu bir bölümdür.</p>
-                </div>
-            </div>
-        </section>
-
-         
+      <!-- Bölümler -->
+      <section id="episodes">
+        <h2>Bölümler</h2>
+        <div class="episode-cards">
+          <div class="episode-card">
+            <h3>7. Sezon Bölüm 8: The Spoils of War</h3>
+            <p>
+              Daenerys Targaryen'in Dothraki ordusu ve ejderhası Drogon ile
+              Lannister ordusuna karşı düzenlediği sürpriz saldırıyı içerir.
+            </p>
+          </div>
+          <div class="episode-card">
+            <h3>6. Sezon Bölüm 9: Battle of the Bastards</h3>
+            <p>
+              Jon Snow ve Ramsay Bolton arasında Winterfell'in kontrolü için
+              gerçekleşen destansı savaşı anlatır.
+            </p>
+          </div>
+          <div class="episode-card">
+            <h3>6. Sezon Bölüm 10: The Winds of Winter</h3>
+            <p>
+              Cersei Lannister'ın Büyük Sept'i yok etmesi ve Jon Snow'un gerçek
+              kökenlerinin ortaya çıkması gibi önemli olayları içerir.
+            </p>
+          </div>
+          <div class="episode-card">
+            <h3>4. Sezon Bölüm 10: The Children</h3>
+            <p>
+              Arya Stark'ın Braavos'a yolculuğu, Tyrion Lannister'ın babası
+              Tywin'i öldürmesi ve Bran Stark'ın Üç Gözlü Kuzgun ile buluşması
+              gibi kritik gelişmeleri içerir.
+            </p>
+          </div>
+          <div class="episode-card">
+            <h3>5. Sezon Bölüm 8: Hardhome</h3>
+            <p>
+              Jon Snow'un Duvar'ın ötesindeki Hardhome'da Ak Gezenler ve onların
+              ordusuyla yüzleştiği, gerilim dolu bir bölümdür.
+            </p>
+          </div>
+        </div>
+      </section>
     </main>
 
     <!-- Footer -->
     <footer>
-        <p>Tasarım: Mahmut AKTAŞ</p>
-        <div class="social-links">
-            <a href="https://github.com/mhmtkts" target="_blank">GitHub</a>
-            <a href="https://linkedin.com/in/mahmutaktaş" target="_blank">LinkedIn</a>
-            <a href="https://aktas.me" target="_blank">Portfolyo</a>
-        </div>
+      <p>Tasarım: Mahmut AKTAŞ</p>
+      <div class="social-links">
+        <a href="https://github.com/mhmtkts" target="_blank">GitHub</a>
+        <a href="https://linkedin.com/in/mahmutaktaş" target="_blank"
+          >LinkedIn</a
+        >
+        <a href="https://aktas.me" target="_blank">Portfolyo</a>
+      </div>
     </footer>
 
-    <audio id="got-theme" src="assets/audio/Game-of-Thrones-Music.mp3" preload="auto"></audio>
-</body>
+    <audio
+      id="got-theme"
+      src="assets/audio/Game-of-Thrones-Music.mp3"
+      preload="auto"
+    ></audio>
+  </body>
 </html>
