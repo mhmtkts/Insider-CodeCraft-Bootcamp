@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Collatz Dizisi Hesaplayıcı</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Collatz Dizisi Analizi</h1>
+        <p>
+          Collatz problemi, 1937'de Lothar Collatz tarafından önerilen
+          matematiksel bir problemdir.
+        </p>
+      </header>
+
+      <section class="info-panel">
+        <div class="card explanation">
+          <h2>Collatz Problemi Nedir?</h2>
+          <p>Problem şöyle tanımlanır:</p>
+          <ul>
+            <li>Herhangi bir pozitif tamsayı ile başla.</li>
+            <li>Eğer sayı çift ise, 2'ye böl.</li>
+            <li>Eğer sayı tek ise, 3 ile çarp ve 1 ekle.</li>
+            <li>Bu işlemi sonuç 1 olana kadar tekrarla.</li>
+          </ul>
+          <p>
+            Collatz hipotezi, bu işlemlerin her pozitif tamsayı için sonunda 1'e
+            ulaşacağını iddia eder.
+          </p>
+        </div>
+
+        <div class="card calculation">
+          <h2>Hesaplama Sonuçları</h2>
+          <div class="result-container">
+            <div id="loading" class="hidden">
+              <div class="spinner"></div>
+              <p>Hesaplanıyor... Bu işlem birkaç saniye sürebilir.</p>
+            </div>
+            <div id="results" class="hidden">
+              <div class="result-item">
+                <div class="result-label">En uzun zinciri üreten sayı:</div>
+                <div id="startingNumber" class="result-value">...</div>
+              </div>
+              <div class="result-item">
+                <div class="result-label">Zincirin uzunluğu:</div>
+                <div id="longestChain" class="result-value">...</div>
+              </div>
+            </div>
+            <div id="initial-message">
+              <p>Hesaplamayı başlatmak için aşağıdaki butona tıklayın.</p>
+            </div>
+          </div>
+          <button id="calculate" class="btn">Hesaplamayı Başlat</button>
+        </div>
+      </section>
+
+      <section class="custom-calculation">
+        <h2>Kendi Sayınız için Hesaplayın</h2>
+        <div class="input-group">
+          <input
+            type="number"
+            id="userInput"
+            min="1"
+            max="100000000"
+            placeholder="Bir sayı girin"
+          />
+          <button id="calculateCustom" class="btn">Hesapla</button>
+        </div>
+        <div id="customResult" class="custom-result"></div>
+      </section>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
