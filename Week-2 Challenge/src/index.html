@@ -3,9 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Task Management</title>
+    <link rel="stylesheet" href="/Week-2 Challenge/src/sytle.css">
 </head>
 <body>
-    
+    <div class="container">
+        <h1>Task Management</h1>
+        <form id="task-form">
+            <div class="form-group">
+                <input type="text" id="task-title" placeholder="Task Name" required>
+            </div>
+            <div class="form-group">
+                <textarea id="task-desc" placeholder="Task Description"></textarea>
+            </div>
+            <div class="form-group priority-group">
+                <label>Priority:</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="priority" value="High"> High</label>
+                    <label><input type="radio" name="priority" value="Medium" > Medium</label>
+                    <label><input type="radio" name="priority" value="Low"> Low</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label><input type="checkbox" id="task-status"> Completed</label>
+            </div>
+            <button type="submit" class="btn-add">Add Task</button>
+        </form>
+        
+        <div class="tasks-container">
+            <div id="pending-tasks">
+                <h2>Pending Tasks</h2>
+                <div class="task-list" id="pending-list"></div>
+            </div>
+            
+            <div id="completed-tasks">
+                <h2>Completed Tasks</h2>
+                <div class="task-list" id="completed-list"></div>
+            </div>
+        </div>
+    </div>
+    <script src="/Week-2 Challenge/src/js/script.js"></script>
 </body>
 </html>
