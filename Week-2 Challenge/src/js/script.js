@@ -8,6 +8,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const completedList = document.getElementById('completed-list');
     const filterView = document.getElementById('filter-view');
     const sortOrder = document.getElementById('sort-order');
+    const emptyPending = document.getElementById('empty-pending');
+    const emptyCompleted = document.getElementById('empty-completed');
+    
+    // Tüm görevleri takip etmek için diziler
+    let pendingTasks = [];
+    let completedTasks = [];
     
     // Form gönderme olayını dinleme
     taskForm.addEventListener('submit', function(e) {
@@ -96,13 +102,32 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         `;
         
+        // Görev ID'si atama
+        const taskId = Date.now().toString();
+        taskItem.dataset.id = taskId;
+        
+        // Görev nesnesini oluşturma
+        const taskObject = {
+            id: taskId,
+            title: title,
+            description: description,
+            priority: priority,
+            isCompleted: isCompleted,
+            element: taskItem
+        };
+        
         // Görev tamamlanmış veya tamamlanmamış olarak ekleme
         if (isCompleted) {
             taskItem.classList.add('completed');
             completedList.appendChild(taskItem);
+            completedTasks.push(taskObject);
         } else {
             pendingList.appendChild(taskItem);
+            pendingTasks.push(taskObject);
         }
+        
+        // Boş liste mesajlarını güncelle
+        updateEmptyListMessages();
         
         // Mevcut filtreye göre görünürlüğü ayarla
         updateTasksVisibility();
@@ -110,6 +135,21 @@ document.addEventListener('DOMContentLoaded', function() {
         // Mevcut sıralamaya göre yeniden sırala
         if (sortOrder.value !== 'default') {
             sortTasks(sortOrder.value);
+        }
+    }
+    
+    // Boş liste mesajlarını güncelle
+    function updateEmptyListMessages() {
+        if (pendingTasks.length === 0) {
+            emptyPending.style.display = 'flex';
+        } else {
+            emptyPending.style.display = 'none';
+        }
+        
+        if (completedTasks.length === 0) {
+            emptyCompleted.style.display = 'flex';
+        } else {
+            emptyCompleted.style.display = 'none';
         }
     }
     
@@ -123,18 +163,40 @@ document.addEventListener('DOMContentLoaded', function() {
         // Tamamla/Geri al butonuna tıklandığında
         if (target.classList.contains('btn-complete')) {
             const taskItem = target.closest('.task-item');
+            const taskId = taskItem.dataset.id;
             
             if (taskItem.parentNode === pendingList) {
+                // Task'ı diziden bul ve güncelle
+                const taskIndex = pendingTasks.findIndex(task => task.id === taskId);
+                if (taskIndex !== -1) {
+                    const task = pendingTasks.splice(taskIndex, 1)[0];
+                    task.isCompleted = true;
+                    completedTasks.push(task);
+                }
+                
+                // DOM'u güncelle
                 pendingList.removeChild(taskItem);
                 taskItem.classList.add('completed');
                 target.textContent = 'Undo';
                 completedList.appendChild(taskItem);
             } else {
+                // Task'ı diziden bul ve güncelle
+                const taskIndex = completedTasks.findIndex(task => task.id === taskId);
+                if (taskIndex !== -1) {
+                    const task = completedTasks.splice(taskIndex, 1)[0];
+                    task.isCompleted = false;
+                    pendingTasks.push(task);
+                }
+                
+                // DOM'u güncelle
                 completedList.removeChild(taskItem);
                 taskItem.classList.remove('completed');
                 target.textContent = 'Complete';
                 pendingList.appendChild(taskItem);
             }
+            
+            // Boş liste mesajlarını güncelle
+            updateEmptyListMessages();
             
             // Mevcut filtreye göre görünürlüğü ayarla
             updateTasksVisibility();
@@ -148,7 +210,20 @@ document.addEventListener('DOMContentLoaded', function() {
         // Silme butonuna tıklandığında
         if (target.classList.contains('btn-delete')) {
             const taskItem = target.closest('.task-item');
+            const taskId = taskItem.dataset.id;
+            
+            // Task'ı diziden sil
+            if (taskItem.parentNode === pendingList) {
+                pendingTasks = pendingTasks.filter(task => task.id !== taskId);
+            } else {
+                completedTasks = completedTasks.filter(task => task.id !== taskId);
+            }
+            
+            // DOM'dan sil
             taskItem.parentNode.removeChild(taskItem);
+            
+            // Boş liste mesajlarını güncelle
+            updateEmptyListMessages();
         }
     });
     
@@ -179,12 +254,33 @@ document.addEventListener('DOMContentLoaded', function() {
     // Sıralama için olay dinleyicisi
     sortOrder.addEventListener('change', function() {
         if (this.value === 'default') {
-            // Default sıralama
-            location.reload();
+            // Default sıralama - görevleri eklendiği sıraya göre göster
+            renderDefaultOrder();
         } else {
             sortTasks(this.value);
         }
     });
+    
+    // Görevleri varsayılan sırada gösterme fonksiyonu
+    function renderDefaultOrder() {
+        // Bekleyen görevleri temizle ve varsayılan sırada yeniden ekle
+        while (pendingList.firstChild) {
+            pendingList.removeChild(pendingList.firstChild);
+        }
+        
+        pendingTasks.forEach(task => {
+            pendingList.appendChild(task.element);
+        });
+        
+        // Tamamlanan görevleri temizle ve varsayılan sırada yeniden ekle
+        while (completedList.firstChild) {
+            completedList.removeChild(completedList.firstChild);
+        }
+        
+        completedTasks.forEach(task => {
+            completedList.appendChild(task.element);
+        });
+    }
     
     // Görevleri önceliğe göre sıralama fonksiyonu
     function sortTasks(order) {
@@ -219,6 +315,7 @@ document.addEventListener('DOMContentLoaded', function() {
         completedElements.forEach(element => completedList.appendChild(element));
     }
     
-    // Sayfa yüklendiğinde varsayılan filtreleme ayarı
+    // Sayfa yüklendiğinde varsayılan filtreyi ve sıralamayı ayarla ve boş liste mesajlarını göster
     updateTasksVisibility();
+    updateEmptyListMessages();
 });
