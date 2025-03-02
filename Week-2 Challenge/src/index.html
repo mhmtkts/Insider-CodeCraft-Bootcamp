@@ -1,110 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Task Management</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
-    <link rel="stylesheet" href="/Week-2 Challenge/src/sytle.css">
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>Task Management</h1>
-            <p class="subtitle">Organize your tasks efficiently</p>
-        </header>
-        
-        <div class="card">
-            <h2>Add New Task</h2>
-            <form id="task-form">
-                <div class="form-group">
-                    <label for="task-title">Task Name <span class="required">*</span></label>
-                    <input type="text" id="task-title" placeholder="Enter task name" required>
-                </div>
-                <div class="form-group">
-                    <label for="task-desc">Task Description</label>
-                    <textarea id="task-desc" placeholder="Enter task description"></textarea>
-                </div>
-                <div class="form-group priority-group">
-                    <label>Priority <span class="required">*</span></label>
-                    <div class="radio-group">
-                        <label class="radio-label">
-                            <input type="radio" name="priority" value="High">
-                            <span class="radio-custom high"></span>
-                            High
-                        </label>
-                        <label class="radio-label">
-                            <input type="radio" name="priority" value="Medium">
-                            <span class="radio-custom medium"></span>
-                            Medium
-                        </label>
-                        <label class="radio-label">
-                            <input type="radio" name="priority" value="Low">
-                            <span class="radio-custom low"></span>
-                            Low
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group checkbox-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="task-status">
-                        <span class="checkbox-custom"></span>
-                        Mark as Completed
-                    </label>
-                </div>
-                <p class="form-hint"><span class="required">*</span> Required fields</p>
-                <button type="submit" class="btn-add">Add Task</button>
-            </form>
-        </div>
-        
-        <div class="filters-wrapper">
-            <h2>Manage Tasks</h2>
-            <p class="subtitle">Filter and sort your tasks as needed</p>
-            
-            <div class="filters">
-                <div class="filter-group">
-                    <label for="filter-view">View:</label>
-                    <select id="filter-view">
-                        <option value="all">All Tasks</option>
-                        <option value="pending">Pending Tasks Only</option>
-                        <option value="completed">Completed Tasks Only</option>
-                    </select>
-                </div>
-                
-                <div class="filter-group">
-                    <label for="sort-order">Sort by:</label>
-                    <select id="sort-order">
-                        <option value="default">Default</option>
-                        <option value="high-to-low">Priority: High to Low</option>
-                        <option value="low-to-high">Priority: Low to High</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        
-        <div class="tasks-container">
-            <div id="pending-tasks" class="task-section">
-                <h2>Pending Tasks</h2>
-                <div class="task-list" id="pending-list"></div>
-                <div class="empty-list" id="empty-pending">
-                    <p>No pending tasks available</p>
-                </div>
-            </div>
-            
-            <div id="completed-tasks" class="task-section">
-                <h2>Completed Tasks</h2>
-                <div class="task-list" id="completed-list"></div>
-                <div class="empty-list" id="empty-completed">
-                    <p>No completed tasks available</p>
-                </div>
-            </div>
-        </div>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="/Week-2 Challenge/src/sytle.css" />
+  </head>
+  <body>
+    <div class="theme-toggle">
+      <button id="theme-switch">
+        <span class="light-icon">☀️</span>
+        <span class="dark-icon">🌙</span>
+      </button>
     </div>
-    
+    <div class="container">
+      <header>
+        <h1>Task Management</h1>
+        <p class="subtitle">Organize your tasks efficiently</p>
+      </header>
+
+      <div class="card">
+        <h2>Add New Task</h2>
+        <form id="task-form">
+          <div class="form-group">
+            <label for="task-title"
+              >Task Name <span class="required">*</span></label
+            >
+            <input
+              type="text"
+              id="task-title"
+              placeholder="Enter task name"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="task-desc">Task Description</label>
+            <textarea
+              id="task-desc"
+              placeholder="Enter task description"
+            ></textarea>
+          </div>
+          <div class="form-group priority-group">
+            <label>Priority <span class="required">*</span></label>
+            <div class="radio-group">
+              <label class="radio-label">
+                <input type="radio" name="priority" value="High" />
+                <span class="radio-custom high"></span>
+                High
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="priority" value="Medium" />
+                <span class="radio-custom medium"></span>
+                Medium
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="priority" value="Low" />
+                <span class="radio-custom low"></span>
+                Low
+              </label>
+            </div>
+          </div>
+          <div class="form-group checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" id="task-status" />
+              <span class="checkbox-custom"></span>
+              Mark as Completed
+            </label>
+          </div>
+          <p class="form-hint">
+            <span class="required">*</span> Required fields
+          </p>
+          <button type="submit" class="btn-add">Add Task</button>
+        </form>
+      </div>
+
+      <div class="filters-wrapper">
+        <h2>Manage Tasks</h2>
+        <p class="subtitle">Filter and sort your tasks as needed</p>
+
+        <div class="filters">
+          <div class="filter-group">
+            <label for="filter-view">View:</label>
+            <select id="filter-view">
+              <option value="all">All Tasks</option>
+              <option value="pending">Pending Tasks Only</option>
+              <option value="completed">Completed Tasks Only</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="sort-order">Sort by:</label>
+            <select id="sort-order">
+              <option value="default">Default</option>
+              <option value="high-to-low">Priority: High to Low</option>
+              <option value="low-to-high">Priority: Low to High</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="tasks-container">
+        <div id="pending-tasks" class="task-section">
+          <h2>Pending Tasks</h2>
+          <div class="task-list" id="pending-list"></div>
+          <div class="empty-list" id="empty-pending">
+            <p>No pending tasks available</p>
+          </div>
+        </div>
+
+        <div id="completed-tasks" class="task-section">
+          <h2>Completed Tasks</h2>
+          <div class="task-list" id="completed-list"></div>
+          <div class="empty-list" id="empty-completed">
+            <p>No completed tasks available</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <footer>
-        <p>&copy; 2025 Task Management App | Created by Mahmut AKTAŞ</p>
+      <p>&copy; 2025 Task Management App | Created by Mahmut AKTAŞ</p>
     </footer>
-    
+
     <script src="/Week-2 Challenge/src/js/script.js"></script>
-</body>
+  </body>
 </html>
