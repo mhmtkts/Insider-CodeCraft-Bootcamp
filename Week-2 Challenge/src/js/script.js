@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const pendingList = document.getElementById('pending-list');
     const completedList = document.getElementById('completed-list');
     const filterView = document.getElementById('filter-view');
+    const sortOrder = document.getElementById('sort-order');
     
     // Form gönderme olayını dinleme
     taskForm.addEventListener('submit', function(e) {
@@ -105,6 +106,11 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Mevcut filtreye göre görünürlüğü ayarla
         updateTasksVisibility();
+        
+        // Mevcut sıralamaya göre yeniden sırala
+        if (sortOrder.value !== 'default') {
+            sortTasks(sortOrder.value);
+        }
     }
     
     // Event delegation ile tüm buton olaylarını dinleme
@@ -132,6 +138,11 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Mevcut filtreye göre görünürlüğü ayarla
             updateTasksVisibility();
+            
+            // Mevcut sıralamaya göre yeniden sırala
+            if (sortOrder.value !== 'default') {
+                sortTasks(sortOrder.value);
+            }
         }
         
         // Silme butonuna tıklandığında
@@ -163,6 +174,49 @@ document.addEventListener('DOMContentLoaded', function() {
                 completedTasksSection.style.display = 'block';
                 break;
         }
+    }
+    
+    // Sıralama için olay dinleyicisi
+    sortOrder.addEventListener('change', function() {
+        if (this.value === 'default') {
+            // Default sıralama
+            location.reload();
+        } else {
+            sortTasks(this.value);
+        }
+    });
+    
+    // Görevleri önceliğe göre sıralama fonksiyonu
+    function sortTasks(order) {
+        const priorityOrder = {'high': 1, 'medium': 2, 'low': 3};
+        
+        // Bekleyen görevleri sırala
+        const pendingElements = Array.from(pendingList.children);
+        
+        pendingElements.sort((a, b) => {
+            if (order === 'high-to-low') {
+                return priorityOrder[a.dataset.priority] - priorityOrder[b.dataset.priority];
+            } else {
+                return priorityOrder[b.dataset.priority] - priorityOrder[a.dataset.priority];
+            }
+        });
+        
+        // DOM'u güncelle
+        pendingElements.forEach(element => pendingList.appendChild(element));
+        
+        // Tamamlanan görevleri sırala
+        const completedElements = Array.from(completedList.children);
+        
+        completedElements.sort((a, b) => {
+            if (order === 'high-to-low') {
+                return priorityOrder[a.dataset.priority] - priorityOrder[b.dataset.priority];
+            } else {
+                return priorityOrder[b.dataset.priority] - priorityOrder[a.dataset.priority];
+            }
+        });
+        
+        // DOM'u güncelle
+        completedElements.forEach(element => completedList.appendChild(element));
     }
     
     // Sayfa yüklendiğinde varsayılan filtreleme ayarı
