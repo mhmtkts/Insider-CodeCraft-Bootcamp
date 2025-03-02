@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const taskStatus = document.getElementById('task-status');
     const pendingList = document.getElementById('pending-list');
     const completedList = document.getElementById('completed-list');
+    const filterView = document.getElementById('filter-view');
     
     // Form gönderme olayını dinleme
     taskForm.addEventListener('submit', function(e) {
@@ -82,6 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Yeni görev elemanını oluşturma
         const taskItem = document.createElement('div');
         taskItem.className = `task-item ${priority.toLowerCase()}`;
+        taskItem.dataset.priority = priority.toLowerCase();
         
         // Görev içeriğini oluşturma
         taskItem.innerHTML = `
@@ -100,6 +102,9 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             pendingList.appendChild(taskItem);
         }
+        
+        // Mevcut filtreye göre görünürlüğü ayarla
+        updateTasksVisibility();
     }
     
     // Event delegation ile tüm buton olaylarını dinleme
@@ -124,6 +129,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 target.textContent = 'Complete';
                 pendingList.appendChild(taskItem);
             }
+            
+            // Mevcut filtreye göre görünürlüğü ayarla
+            updateTasksVisibility();
         }
         
         // Silme butonuna tıklandığında
@@ -132,4 +140,31 @@ document.addEventListener('DOMContentLoaded', function() {
             taskItem.parentNode.removeChild(taskItem);
         }
     });
+    
+    // Filtreleme için olay dinleyicisi
+    filterView.addEventListener('change', updateTasksVisibility);
+    
+    // Görevlerin görünürlüğünü güncelleme fonksiyonu
+    function updateTasksVisibility() {
+        const pendingTasksSection = document.getElementById('pending-tasks');
+        const completedTasksSection = document.getElementById('completed-tasks');
+        
+        switch (filterView.value) {
+            case 'all':
+                pendingTasksSection.style.display = 'block';
+                completedTasksSection.style.display = 'block';
+                break;
+            case 'pending':
+                pendingTasksSection.style.display = 'block';
+                completedTasksSection.style.display = 'none';
+                break;
+            case 'completed':
+                pendingTasksSection.style.display = 'none';
+                completedTasksSection.style.display = 'block';
+                break;
+        }
+    }
+    
+    // Sayfa yüklendiğinde varsayılan filtreleme ayarı
+    updateTasksVisibility();
 });
