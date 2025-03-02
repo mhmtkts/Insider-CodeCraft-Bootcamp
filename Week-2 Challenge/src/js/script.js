@@ -101,4 +101,35 @@ document.addEventListener('DOMContentLoaded', function() {
             pendingList.appendChild(taskItem);
         }
     }
+    
+    // Event delegation ile tüm buton olaylarını dinleme
+    document.querySelector('.tasks-container').addEventListener('click', function(e) {
+        // Event bubbling'i önle
+        e.stopPropagation();
+        
+        const target = e.target;
+        
+        // Tamamla/Geri al butonuna tıklandığında
+        if (target.classList.contains('btn-complete')) {
+            const taskItem = target.closest('.task-item');
+            
+            if (taskItem.parentNode === pendingList) {
+                pendingList.removeChild(taskItem);
+                taskItem.classList.add('completed');
+                target.textContent = 'Undo';
+                completedList.appendChild(taskItem);
+            } else {
+                completedList.removeChild(taskItem);
+                taskItem.classList.remove('completed');
+                target.textContent = 'Complete';
+                pendingList.appendChild(taskItem);
+            }
+        }
+        
+        // Silme butonuna tıklandığında
+        if (target.classList.contains('btn-delete')) {
+            const taskItem = target.closest('.task-item');
+            taskItem.parentNode.removeChild(taskItem);
+        }
+    });
 });
