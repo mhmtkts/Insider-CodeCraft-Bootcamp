@@ -11,19 +11,17 @@ document.addEventListener("DOMContentLoaded", function () {
   const emptyPending = document.getElementById("empty-pending");
   const emptyCompleted = document.getElementById("empty-completed");
 
-  document.getElementById("theme-switch").addEventListener("click", () => {
+  if (localStorage.getItem("darkTheme") === "true") {
+    document.body.classList.add("dark-theme");
+  }
+
+  // Tema değiştirme butonu olayı
+  document.getElementById("theme-switch").addEventListener("click", function () {
     document.body.classList.toggle("dark-theme");
 
     // Kullanıcı tercihini kaydet
     const isDarkTheme = document.body.classList.contains("dark-theme");
     localStorage.setItem("darkTheme", isDarkTheme);
-  });
-
-  // Sayfa yüklendiğinde kullanıcı tercihini kontrol et
-  document.addEventListener("DOMContentLoaded", () => {
-    if (localStorage.getItem("darkTheme") === "true") {
-      document.body.classList.add("dark-theme");
-    }
   });
 
   // Tüm görevleri takip etmek için diziler
