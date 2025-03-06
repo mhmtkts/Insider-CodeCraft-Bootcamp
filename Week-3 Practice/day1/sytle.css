@@ -1,0 +1,234 @@
+:root {
+  --primary-color: #3498db;
+  --accent-color: #2ecc71;
+  --delete-color: #e74c3c;
+  --bg-color: #f8f9fa;
+  --card-bg: #ffffff;
+  --text-color: #2d3436;
+  --completed-color: #95a5a6;
+  --border-radius: 12px;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  padding: 30px 20px;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: 30px;
+  box-shadow: var(--shadow);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: 2.2rem;
+}
+
+.input-group {
+  display: flex;
+  margin-bottom: 25px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+#txtTask {
+  flex: 1;
+  padding: 15px;
+  border: none;
+  font-size: 16px;
+  outline: none;
+  transition: var(--transition);
+}
+
+#txtTask:focus {
+  box-shadow: inset 0 0 0 2px var(--primary-color);
+}
+
+#btnAdd {
+  padding: 15px 25px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition);
+}
+
+#btnAdd:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+}
+
+#btnAdd:active {
+  transform: translateY(0);
+}
+
+#taskList {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  background: var(--card-bg);
+  padding: 15px;
+  margin-bottom: 12px;
+  border-radius: var(--border-radius);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  transition: var(--transition);
+  animation: fadeIn 0.5s ease;
+  overflow: hidden;
+}
+
+li:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.task-text {
+  flex: 1;
+  cursor: pointer;
+  position: relative;
+  padding-left: 35px;
+  font-size: 16px;
+  transition: var(--transition);
+}
+
+.task-text:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--primary-color);
+  border-radius: 50%;
+  transition: var(--transition);
+}
+
+.completed .task-text:before {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  content: "✓";
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.completed .task-text {
+  text-decoration: line-through;
+  color: var(--completed-color);
+}
+
+.completed {
+  background-color: #f8f9fa;
+}
+
+.btn-delete {
+  background-color: transparent;
+  color: var(--delete-color);
+  border: none;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-left: 10px;
+  opacity: 0.7;
+  transition: var(--transition);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-delete:hover {
+  background-color: rgba(231, 76, 60, 0.1);
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.empty-list {
+  text-align: center;
+  color: var(--completed-color);
+  padding: 30px;
+  font-size: 18px;
+  border: 2px dashed #e0e0e0;
+  border-radius: var(--border-radius);
+  margin: 20px 0;
+}
+
+.empty-list i {
+  font-size: 48px;
+  margin-bottom: 15px;
+  color: #e0e0e0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.task-actions {
+  display: flex;
+  gap: 5px;
+}
+
+.task-date {
+  font-size: 12px;
+  color: #95a5a6;
+  display: block;
+  margin-top: 5px;
+}
+
+.header-stats {
+  display: flex;
+  justify-content: space-around;
+  margin: -10px 0 20px;
+  font-size: 14px;
+  color: var(--completed-color);
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-value {
+  font-weight: bold;
+  font-size: 20px;
+  color: var(--primary-color);
+  margin-bottom: 5px;
+}

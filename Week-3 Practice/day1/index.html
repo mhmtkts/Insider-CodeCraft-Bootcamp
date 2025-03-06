@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Görev Listesi</title>
+    <link rel="stylesheet" href="/week3/day1/sytle.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Görev Listesi</h1>
+
+      <div class="header-stats">
+        <div class="stat">
+          <div id="total-tasks" class="stat-value">0</div>
+          <div>Toplam Görev</div>
+        </div>
+        <div class="stat">
+          <div id="completed-tasks" class="stat-value">0</div>
+          <div>Tamamlananlar</div>
+        </div>
+        <div class="stat">
+          <div id="active-tasks" class="stat-value">0</div>
+          <div>Aktif Görevler</div>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <input type="text" id="txtTask" placeholder="Yeni görev ekle..." />
+        <button id="btnAdd"><i class="fas fa-plus"></i> Ekle</button>
+      </div>
+
+      <ul id="taskList">
+        <li class="empty-list">
+          <div>
+            <i class="fas fa-clipboard-list"></i>
+            <p>Henüz görev eklenmedi.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <script>
+      $(document).ready(function () {
+        checkEmptyList();
+        updateStats();
+
+        $("#btnAdd").click(function () {
+          addNewTask();
+        });
+
+        $("#txtTask").keypress(function (event) {
+          if (event.which === 13) {
+            addNewTask();
+          }
+        });
+
+        function addNewTask() {
+          var taskText = $("#txtTask").val().trim();
+
+          if (taskText !== "") {
+            var today = new Date();
+            var dateString = today.toLocaleDateString("tr-TR");
+
+            var newTask = $(`
+                        <li>
+                            <span class='task-text'>
+                                ${taskText}
+                                <span class='task-date'>Oluşturuldu: ${dateString}</span>
+                            </span>
+                            <div class='task-actions'>
+                                <button class='btn-delete'><i class="fas fa-trash-alt"></i></button>
+                            </div>
+                        </li>
+                    `);
+
+            newTask.find(".task-text").click(function () {
+              $(this).parent().toggleClass("completed");
+              updateStats();
+            });
+
+            newTask.find(".btn-delete").click(function () {
+              $(this)
+                .closest("li")
+                .fadeOut(300, function () {
+                  $(this).remove();
+                  checkEmptyList();
+                  updateStats();
+                });
+            });
+
+            $("#taskList").append(newTask);
+
+            $("#txtTask").val("");
+
+            checkEmptyList();
+            updateStats();
+          } else {
+            $("#txtTask").addClass("error").focus();
+            setTimeout(() => {
+              $("#txtTask").removeClass("error");
+            }, 1000);
+          }
+        }
+
+        function checkEmptyList() {
+          var taskCount = $("#taskList li").not(".empty-list").length;
+
+          if (taskCount === 0) {
+            $("#taskList .empty-list").fadeIn();
+          } else {
+            $("#taskList .empty-list").hide();
+          }
+        }
+
+        function updateStats() {
+          var total = $("#taskList li").not(".empty-list").length;
+          var completed = $("#taskList li.completed").length;
+          var active = total - completed;
+
+          $("#total-tasks").text(total);
+          $("#completed-tasks").text(completed);
+          $("#active-tasks").text(active);
+        }
+      });
+    </script>
+  </body>
+</html>

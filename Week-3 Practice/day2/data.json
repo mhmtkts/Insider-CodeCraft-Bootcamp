@@ -1,0 +1,52 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Akıllı Telefon X",
+      "price": 8999.99,
+      "description": "En son teknoloji ile donatılmış akıllı telefon",
+      "image": "https://placehold.co/300x200?text=Telefon",
+      "link": "https://example.com/products/1"
+    },
+    {
+      "id": 2,
+      "name": "Dizüstü Bilgisayar Pro",
+      "price": 18599.99,
+      "description": "yüksek performanslı dizüstü bilgisayar",
+      "image": "https://placehold.co/300x200?text=Laptop",
+      "link": "https://example.com/products/2"
+    },
+    {
+      "id": 3,
+      "name": "Kablosuz Kulaklık",
+      "price": 1299.99,
+      "description": "Aktif gürültü engelleme özellikli kablosuz kulaklık",
+      "image": "https://placehold.co/300x200?text=Kulaklık",
+      "link": "https://example.com/products/3"
+    },
+    {
+      "id": 4,
+      "name": "Akıllı Saat",
+      "price": 2499.99,
+      "description": "Sağlık takibi ve bildirim özellikleriyle donatılmış saat",
+      "image": "https://placehold.co/300x200?text=Saat",
+      "link": "https://example.com/products/4"
+    },
+    {
+      "id": 5,
+      "name": "Bluetooth Hoparlör",
+      "price": 899.99,
+      "description": "Su geçirmez ve taşınabilir bluetooth hoparlör",
+      "image": "https://placehold.co/300x200?text=Hoparlör",
+      "link": "https://example.com/products/5"
+    },
+    {
+      "id": 6,
+      "name": "Oyun Konsolu",
+      "price": 7999.99,
+      "description": "4K çözünürlükte oyun deneyimi sunan konsol",
+      "image": "https://placehold.co/300x200?text=Konsol",
+      "link": "https://example.com/products/6"
+    }
+  ]
+}

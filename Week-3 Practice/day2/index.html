@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/week3/day2/style.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <title>AJAX ile Ürün Listesi</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Ürün Kataloğu</h1>
+        <button id="btnListProducts" class="btn">Ürünleri Listele</button>
+      </header>
+
+      <div id="loading" class="loading hidden">
+        <div class="spinner"></div>
+        <p>Ürünler yükleniyor...</p>
+      </div>
+
+      <div id="products-container" class="products-container"></div>
+    </div>
+
+    <script>
+      $(document).ready(function () {
+        $("#btnListProducts").click(function () {
+          $("#loading").removeClass("hidden");
+          $("#products-container").empty();
+
+          $.ajax({
+            url: "data.json",
+            dataType: "json",
+            success: function (data) {
+              $("#loading").addClass("hidden");
+
+              $.each(data.products, function (index, product) {
+                let productCard = `
+                                <div class="product-card">
+                                    <div class="product-image">
+                                        <img src="${product.image}" alt="${
+                  product.name
+                }">
+                                    </div>
+                                    <div class="product-info">
+                                        <h3>${product.name}</h3>
+                                        <p class="product-description">${
+                                          product.description
+                                        }</p>
+                                        <div class="product-price">${product.price.toLocaleString(
+                                          "tr-TR"
+                                        )} ₺</div>
+                                        <a href="${
+                                          product.link
+                                        }" class="btn product-link" target="_blank">Ürün Detayları</a>
+                                    </div>
+                                </div>
+                            `;
+
+                $("#products-container").append(productCard);
+              });
+
+              $(".product-card").addClass("fade-in");
+            },
+            error: function (xhr, status, error) {
+              $("#loading").addClass("hidden");
+              $("#products-container").html(`
+                            <div class="error-message">
+                                <h3>Hata!</h3>
+                                <p>Ürünler yüklenirken bir sorun oluştu. Lütfen daha sonra tekrar deneyin.</p>
+                                <p>Hata detayı: ${error}</p>
+                            </div>
+                        `);
+            },
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
