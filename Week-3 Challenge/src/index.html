@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ürünleri Listele</title>
     <script
       src="https://code.jquery.com/jquery-3.7.1.min.js"
@@ -10,29 +10,50 @@
       crossorigin="anonymous"
     ></script>
 
-    <style>
-
-    </style>
-</head>
-<body>
+    <style></style>
+  </head>
+  <body>
     <header>
-        <h1>Ürün Kataloğu</h1>
+      <h1>Ürün Kataloğu</h1>
     </header>
     <main>
-        <div id = "products-container"></div>
+      <div id="products-container"></div>
     </main>
-    
+
     <div id="product-modal">
-        <div id="modal-content">
-            <span id="close-modal">&times;</span>
-            <div id="modal-body"></div>
-        </div>
+      <div id="modal-content">
+        <span id="close-modal">&times;</span>
+        <div id="modal-body"></div>
+      </div>
     </div>
 
     <script>
-        $(document).ready(function() {
-            
+      $(document).ready(function () {
+        $.ajax({
+          url: "/Week-3 Challenge/src/products.json",
+          type: "GET",
+          dataType: "json",
+          success: function (data) {
+            $.each(data, function (index, product) {
+              let productCard = $(
+                '<div class="product-card" data-id="' + product.id + '"></div>'
+              );
+
+                productCard.html(`
+                    <img src="${
+                      product.image
+                    }" alt="${product.name}" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-name">${product.name}</h3>
+                        <p class="product-price">${product.price.toLocaleString()} TL</p>
+                    </div>
+                `);
+
+                
+            });
+          },
         });
+      });
     </script>
-</body>
+  </body>
 </html>
