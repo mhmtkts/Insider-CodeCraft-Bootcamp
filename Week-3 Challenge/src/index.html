@@ -9,8 +9,6 @@
       integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
       crossorigin="anonymous"
     ></script>
-
-    <style></style>
   </head>
   <body>
     <header>
@@ -29,8 +27,9 @@
 
     <script>
       $(document).ready(function () {
+        
         $.ajax({
-          url: "/Week-3 Challenge/src/products.json",
+          url: "/Week-3 Challenge/src/data/products.json",
           type: "GET",
           dataType: "json",
           success: function (data) {
@@ -39,19 +38,50 @@
                 '<div class="product-card" data-id="' + product.id + '"></div>'
               );
 
-                productCard.html(`
-                    <img src="${
-                      product.image
-                    }" alt="${product.name}" class="product-image">
-                    <div class="product-info">
-                        <h3 class="product-name">${product.name}</h3>
-                        <p class="product-price">${product.price.toLocaleString()} TL</p>
-                    </div>
-                `);
+              productCard.html(`
+                          <img src="${
+                            product.image
+                          }" alt="${product.name}" class="product-image">
+                          <div class="product-info">
+                              <h3 class="product-name">${product.name}</h3>
+                              <p class="product-price">${product.price.toLocaleString()} TL</p>
+                          </div>
+                      `);
 
-                
+              productCard.on("click", function () {
+                $("#modal-body").html(`
+                          <img src="${
+                            product.image
+                          }" alt="${product.name}" class="modal-image">
+                          <div class="modal-details">
+                              <h2>${product.name}</h2>
+                              <p class="modal-price">${product.price.toLocaleString()} TL</p>
+                              <p class="modal-description">${
+                                product.description
+                              }</p>
+                          </div>
+                      `);
+
+                $("#product-modal").fadeIn(300);
+              });
+
+              $("#products-container").append(productCard);
             });
           },
+          error: function (xhr, status, error) {
+            console.error("JSON verileri yüklenemedi: ", error);
+            $("#products-container").html(
+              "<p>Ürünler yüklenirken bir hata oluştu.</p>"
+            );
+          },
+        });
+        $("#close-modal").on("click", function () {
+          $("#product-modal").fadeOut(300);
+        });
+        $(window).on("click", function (event) {
+          if (event.target === document.getElementById("product-modal")) {
+            $("#product-modal").fadeOut(300);
+          }
         });
       });
     </script>
