@@ -1,0 +1,50 @@
+[
+    {
+      "id": 1,
+      "name": "Akıllı Telefon XS",
+      "price": 12499.99,
+      "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02ff9?q=80&w=300",
+      "detailLink": "product-details.html?id=1",
+      "description": "6.1 inç OLED ekran, 128GB depolama, 12MP çift kamera sistemi ve gün boyu süren pil ömrü. Su ve toz dirençli tasarım."
+    },
+    {
+      "id": 2,
+      "name": "Dizüstü Bilgisayar Pro",
+      "price": 24999.99,
+      "image": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?q=80&w=300",
+      "detailLink": "product-details.html?id=2",
+      "description": "16 inç Retina ekran, 16GB RAM, 512GB SSD depolama ve 10 saate kadar pil ömrü. Profesyonel kullanıcılar için tasarlandı."
+    },
+    {
+      "id": 3,
+      "name": "Kablosuz Kulaklık Elite",
+      "price": 2499.99,
+      "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=300",
+      "detailLink": "product-details.html?id=3",
+      "description": "Aktif gürültü önleme teknolojisi, 24 saat pil ömrü, su direnci ve kristal netliğinde ses kalitesi."
+    },
+    {
+      "id": 4,
+      "name": "4K Smart TV",
+      "price": 18999.99,
+      "image": "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?q=80&w=300",
+      "detailLink": "product-details.html?id=4",
+      "description": "65 inç 4K UHD ekran, yapay zeka destekli görüntü işleme, tüm popüler streaming uygulamaları ve gelişmiş ses sistemi."
+    },
+    {
+      "id": 5,
+      "name": "Akıllı Saat Series 7",
+      "price": 4599.99,
+      "image": "https://images.unsplash.com/photo-1544117519-31a4b719223d?q=80&w=300",
+      "detailLink": "product-details.html?id=5",
+      "description": "Always-on Retina ekran, EKG sensörü, su geçirmez tasarım, fitness takibi ve birçok sağlık özelliği."
+    },
+    {
+      "id": 6,
+      "name": "Kablosuz Şarj Standı",
+      "price": 799.99,
+      "image": "https://images.unsplash.com/photo-1636820784699-5d5718f91b45?q=80&w=300",
+      "detailLink": "product-details.html?id=6",
+      "description": "Hızlı kablosuz şarj teknolojisi, çoklu cihaz desteği ve şık minimalist tasarım."
+    }
+  ]
