@@ -27,7 +27,33 @@
 
     <script>
       $(document).ready(function () {
-        
+        $('head').append(`
+            <style>
+                body {
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    margin: 0;
+                    padding: 0;
+                    background-color: #f5f5f5;
+                    color: #333;
+                }
+                    
+                header {
+                    background-color: #2c3e50;
+                    color: white;
+                    padding: 20px;
+                    text-align: center;
+                }
+
+                main {
+                    max-width: 1200px;
+                    margin: 20px auto;
+                    padding: 0 20px;
+                }
+                
+                
+                `
+            )
+
         $.ajax({
           url: "/Week-3 Challenge/src/data/products.json",
           type: "GET",
