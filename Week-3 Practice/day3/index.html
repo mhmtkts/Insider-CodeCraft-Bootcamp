@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>İş Başvuru Formu | Modern</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
+
+    <style>
+      :root {
+        --primary-color: #4361ee;
+        --primary-light: #4895ef;
+        --primary-dark: #3a0ca3;
+        --secondary-color: #4cc9f0;
+        --success-color: #06d6a0;
+        --danger-color: #ef476f;
+        --warning-color: #ffd166;
+        --background-color: #f8f9fa;
+        --card-color: #ffffff;
+        --text-color: #2b2d42;
+        --text-light: #8d99ae;
+        --border-radius: 12px;
+        --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: var(--background-color);
+        color: var(--text-color);
+        line-height: 1.6;
+        padding: 30px 20px;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-image: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+      }
+
+      .container {
+        width: 100%;
+        max-width: 650px;
+        background-color: var(--card-color);
+        padding: 40px;
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(
+          90deg,
+          var(--primary-color),
+          var(--secondary-color)
+        );
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: var(--primary-color);
+        font-weight: 600;
+        font-size: 2.2rem;
+        position: relative;
+      }
+
+      h1::after {
+        content: "";
+        display: block;
+        width: 70px;
+        height: 4px;
+        background: linear-gradient(
+          90deg,
+          var(--primary-color),
+          var(--secondary-color)
+        );
+        margin: 12px auto 0;
+        border-radius: 2px;
+      }
+
+      .form-container {
+        margin-top: 30px;
+      }
+
+      .form-group {
+        margin-bottom: 30px;
+        position: relative;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        font-size: 14px;
+        color: var(--text-light);
+        transition: var(--transition);
+      }
+
+      .input-group {
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+
+      .input-group i {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-light);
+        font-size: 18px;
+        transition: var(--transition);
+        z-index: 2;
+        pointer-events: none;
+      }
+
+      input {
+        width: 100%;
+        padding: 15px 15px 15px 45px;
+        border: 1px solid #e0e0e0;
+        border-radius: calc(var(--border-radius) / 2);
+        font-size: 16px;
+        transition: var(--transition);
+        background-color: #f9fafc;
+        font-family: "Poppins", sans-serif;
+      }
+
+      input:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        background-color: #fff;
+        box-shadow: 0 0 0 4px rgba(67, 97, 238, 0.1);
+      }
+
+      input:focus + i {
+        color: var(--primary-color);
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 14px 28px;
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: calc(var(--border-radius) / 2);
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 500;
+        transition: var(--transition);
+        gap: 8px;
+        box-shadow: 0 4px 6px rgba(67, 97, 238, 0.15);
+        font-family: "Poppins", sans-serif;
+      }
+
+      .btn:hover {
+        background-color: var(--primary-dark);
+        box-shadow: 0 6px 10px rgba(67, 97, 238, 0.2);
+        transform: translateY(-2px);
+      }
+
+      .btn:active {
+        transform: translateY(0);
+      }
+
+      .btn i {
+        font-size: 18px;
+      }
+
+      #btnMakeapplication {
+        display: flex;
+        margin: 30px auto;
+        min-width: 220px;
+        padding: 16px 30px;
+      }
+
+      .btn-cancel {
+        background-color: var(--danger-color);
+        box-shadow: 0 4px 6px rgba(239, 71, 111, 0.15);
+      }
+
+      .btn-cancel:hover {
+        background-color: #e5365a;
+        box-shadow: 0 6px 10px rgba(239, 71, 111, 0.2);
+      }
+
+      .btn-submit {
+        background-color: var(--success-color);
+        box-shadow: 0 4px 6px rgba(6, 214, 160, 0.15);
+      }
+
+      .btn-submit:hover {
+        background-color: #05c090;
+        box-shadow: 0 6px 10px rgba(6, 214, 160, 0.2);
+      }
+
+      .button-group {
+        display: flex;
+        gap: 15px;
+        margin-top: 40px;
+      }
+
+      .button-group .btn {
+        flex: 1;
+      }
+
+      .message {
+        display: none;
+        padding: 20px;
+        border-radius: calc(var(--border-radius) / 2);
+        margin: 30px 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .success {
+        background-color: rgba(6, 214, 160, 0.1);
+        color: var(--success-color);
+        border: 1px solid rgba(6, 214, 160, 0.3);
+      }
+
+      .success i {
+        font-size: 24px;
+        margin-right: 10px;
+        vertical-align: middle;
+      }
+
+      label.error {
+        color: var(--danger-color);
+        font-size: 13px;
+        position: absolute;
+        bottom: -35px; /* Form grubunun dışına yerleştir */
+        left: 0;
+        display: block;
+        font-weight: 400;
+        margin-top: 0; /* Önceki margin kaldır */
+        z-index: 1;
+      }
+
+      input.error {
+        border-color: var(--danger-color);
+        background-color: rgba(239, 71, 111, 0.05);
+      }
+
+      .form-title {
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 25px;
+        color: var(--text-color);
+      }
+
+      .slide-up {
+        animation: slideUp 0.4s forwards;
+      }
+
+      .slide-down {
+        animation: slideDown 0.4s forwards;
+      }
+
+      @keyframes slideUp {
+        from {
+          transform: translateY(20px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideDown {
+        from {
+          transform: translateY(0);
+          opacity: 1;
+        }
+        to {
+          transform: translateY(20px);
+          opacity: 0;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          padding: 30px 20px;
+        }
+
+        h1 {
+          font-size: 1.8rem;
+        }
+
+        .button-group {
+          flex-direction: column;
+        }
+      }
+
+      .loading {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        border-top-color: #fff;
+        animation: spin 1s ease-in-out infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container slide-up">
+      <h1>İş Başvuru Formu</h1>
+
+      <button id="btnMakeapplication" class="btn">
+        <i class="fas fa-file-signature"></i>
+        Başvuru Yapmak İstiyorum
+      </button>
+
+      <div id="successMessage" class="message success">
+        <i class="fas fa-check-circle"></i>
+        Başvurunuz başarıyla alınmıştır. En kısa sürede sizinle iletişime
+        geçeceğiz!
+      </div>
+
+      <div class="form-container" style="display: none">
+        <h2 class="form-title">Kişisel Bilgileriniz</h2>
+        <form id="applicationForm">
+          <div class="form-group">
+            <label for="name">Adınız</label>
+            <div class="input-group">
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Adınızı giriniz"
+              />
+              <i class="fas fa-user"></i>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="surname">Soyadınız</label>
+            <div class="input-group">
+              <input
+                type="text"
+                id="surname"
+                name="surname"
+                placeholder="Soyadınızı giriniz"
+              />
+              <i class="fas fa-user"></i>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">E-posta Adresiniz</label>
+            <div class="input-group">
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="E-posta adresinizi giriniz"
+              />
+              <i class="fas fa-envelope"></i>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Telefon Numaranız</label>
+            <div class="input-group">
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="Telefon numaranızı giriniz"
+              />
+              <i class="fas fa-phone"></i>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="position">Başvurulan Pozisyon</label>
+            <div class="input-group">
+              <input
+                type="text"
+                id="position"
+                name="position"
+                placeholder="Başvurmak istediğiniz pozisyon"
+              />
+              <i class="fas fa-briefcase"></i>
+            </div>
+          </div>
+
+          <div class="button-group">
+            <button id="btnSubmit" class="btn btn-submit" type="submit">
+              <i class="fas fa-paper-plane"></i>
+              <span>Başvuruyu Gönder</span>
+              <span class="loading hidden"></span>
+            </button>
+            <button id="btnCancel" class="btn btn-cancel" type="button">
+              <i class="fas fa-times"></i>
+              Vazgeç
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      $(document).ready(function () {
+        $("#phone").mask("(999) 999 9999");
+
+        $("#btnMakeapplication").on("click", function () {
+          $(this).fadeOut(300, function () {
+            $(".form-container").addClass("slide-up").fadeIn(500);
+          });
+        });
+
+        $("#btnCancel").on("click", function () {
+          $(".form-container")
+            .removeClass("slide-up")
+            .addClass("slide-down")
+            .fadeOut(300, function () {
+              $(".form-container").removeClass("slide-down");
+              $("#btnMakeapplication").fadeIn(500);
+              $("#applicationForm")[0].reset(); // Formu sıfırla
+              $("#applicationForm").validate().resetForm(); // Validation'ı resetle
+            });
+        });
+
+        $("#applicationForm").validate({
+          rules: {
+            name: {
+              required: true,
+              minlength: 2,
+            },
+            surname: {
+              required: true,
+              minlength: 2,
+            },
+            email: {
+              required: true,
+              email: true,
+            },
+            phone: {
+              required: true,
+              minlength: 14,
+            },
+            position: {
+              required: true,
+              minlength: 2,
+            },
+          },
+          messages: {
+            name: {
+              required: "Lütfen adınızı girin",
+              minlength: "Adınız en az 2 karakter olmalıdır",
+            },
+            surname: {
+              required: "Lütfen soyadınızı girin",
+              minlength: "Soyadınız en az 2 karakter olmalıdır",
+            },
+            email: {
+              required: "Lütfen e-posta adresinizi girin",
+              email: "Geçerli bir e-posta adresi girin",
+            },
+            phone: {
+              required: "Lütfen telefon numaranızı girin",
+              minlength: "Geçerli bir telefon numarası girin",
+            },
+            position: {
+              required: "Lütfen başvurmak istediğiniz pozisyonu girin",
+              minlength: "Pozisyon adı en az 2 karakter olmalıdır",
+            },
+          },
+          submitHandler: function (form) {
+            $("#btnSubmit span:not(.loading)").addClass("hidden");
+            $("#btnSubmit .loading").removeClass("hidden");
+            $("#btnSubmit").prop("disabled", true);
+
+            const formData = {
+              name: $("#name").val(),
+              surname: $("#surname").val(),
+              email: $("#email").val(),
+              phone: $("#phone").val(),
+              position: $("#position").val(),
+            };
+
+            console.log("Gönderilen form verileri:", formData);
+
+            setTimeout(function () {
+              $(".form-container").fadeOut(300, function () {
+                $("#successMessage")
+                  .fadeIn(500)
+                  .delay(3000)
+                  .fadeOut(500, function () {
+                    $("#btnMakeapplication").fadeIn(500);
+                    $("#applicationForm")[0].reset();
+                    $("#btnSubmit span:not(.loading)").removeClass("hidden");
+                    $("#btnSubmit .loading").addClass("hidden");
+                    $("#btnSubmit").prop("disabled", false);
+                  });
+              });
+            }, 1500);
+
+            return false;
+          },
+        });
+      });
+    </script>
+  </body>
+</html>
