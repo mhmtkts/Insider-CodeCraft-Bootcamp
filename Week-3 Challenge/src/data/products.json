@@ -3,7 +3,7 @@
       "id": 1,
       "name": "Akıllı Telefon XS",
       "price": 12499.99,
-      "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02ff9?q=80&w=300",
+      "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?q=80&w=300",
       "detailLink": "product-details.html?id=1",
       "description": "6.1 inç OLED ekran, 128GB depolama, 12MP çift kamera sistemi ve gün boyu süren pil ömrü. Su ve toz dirençli tasarım."
     },
@@ -43,8 +43,56 @@
       "id": 6,
       "name": "Kablosuz Şarj Standı",
       "price": 799.99,
-      "image": "https://images.unsplash.com/photo-1636820784699-5d5718f91b45?q=80&w=300",
+      "image": "https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?q=80&w=300",
       "detailLink": "product-details.html?id=6",
       "description": "Hızlı kablosuz şarj teknolojisi, çoklu cihaz desteği ve şık minimalist tasarım."
+    },
+    {
+      "id": 7,
+      "name": "Oyun Konsolu Pro",
+      "price": 9999.99,
+      "image": "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?q=80&w=300",
+      "detailLink": "product-details.html?id=7",
+      "description": "4K oyun deneyimi, 1TB SSD depolama, kablosuz kontrolcü ve yüzlerce uyumlu oyun. Gerçekçi grafikler ve hızlı yükleme süreleri."
+    },
+    {
+      "id": 8,
+      "name": "Akıllı Ev Asistanı",
+      "price": 1299.99,
+      "image": "https://images.unsplash.com/photo-1543512214-318c7553f230?q=80&w=300",
+      "detailLink": "product-details.html?id=8",
+      "description": "Sesli komutlarla kontrol, akıllı ev cihazlarını yönetme, müzik çalma ve sorulara cevap verme özellikleriyle hayatınızı kolaylaştıran asistan."
+    },
+    {
+      "id": 9,
+      "name": "Kablosuz Bluetooth Hoparlör",
+      "price": 1899.99,
+      "image": "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?q=80&w=300",
+      "detailLink": "product-details.html?id=9",
+      "description": "360 derece ses teknolojisi, 20 saat pil ömrü, su geçirmez tasarım ve çift eşleştirme özelliği ile üstün ses deneyimi."
+    },
+    {
+      "id": 10,
+      "name": "Dijital Fotoğraf Makinesi",
+      "price": 7499.99,
+      "image": "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?q=80&w=300",
+      "detailLink": "product-details.html?id=10",
+      "description": "24.2MP sensör, 4K video kayıt, 3 inç dokunmatik ekran ve geniş ISO aralığı ile profesyonel fotoğraflar çekin."
+    },
+    {
+      "id": 11,
+      "name": "Akıllı Robot Süpürge",
+      "price": 4299.99,
+      "image": "https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?q=80&w=300",
+      "detailLink": "product-details.html?id=11",
+      "description": "Lazer haritalama, akıllı navigasyon, 3 saate kadar çalışma süresi, mobil uygulama kontrolü ve otomatik şarj özelliği."
+    },
+    {
+      "id": 12,
+      "name": "Taşınabilir SSD Disk",
+      "price": 1799.99,
+      "image": "https://images.unsplash.com/photo-1589490055926-a4c5f4292906?q=80&w=300",
+      "detailLink": "product-details.html?id=12",
+      "description": "1TB kapasiteli, 1050MB/sn okuma hızı, şok ve titreşime dayanıklı, USB-C bağlantısı ve kompakt tasarım."
     }
   ]
