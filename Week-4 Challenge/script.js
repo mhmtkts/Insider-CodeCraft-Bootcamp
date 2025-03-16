@@ -47,6 +47,8 @@ class UserManager {
 
   async fetchUsers() {
     try {
+      this.showLoading();
+      
       const response = await fetch(API_URL);
       
       if (!response.ok) {
@@ -59,6 +61,9 @@ class UserManager {
       this.renderUsers(users);
     } catch (error) {
       console.error('Veri çekme hatası:', error);
+      this.showError(error.message);
+    } finally {
+      this.hideLoading();
     }
   }
 
@@ -203,6 +208,43 @@ class UserManager {
     localStorage.removeItem(STORAGE_KEYS.users);
     this.fetchUsers();
   }
+
+  showLoading() {
+    if (!this.container) return;
+    
+    const loader = document.createElement('div');
+    loader.classList.add('loader');
+    
+    loader.innerHTML = `
+      <div class="spinner"></div>
+      <p>Kullanıcılar yükleniyor...</p>
+    `;
+    
+    this.container.innerHTML = '';
+    this.container.appendChild(loader);
+  }
+  
+  hideLoading() {
+    if (!this.container) return;
+    
+    const loader = this.container.querySelector('.loader');
+    if (loader) loader.remove();
+  }
+  
+  showError(message) {
+    if (!this.container) return;
+    
+    const errorElement = document.createElement('div');
+    errorElement.classList.add('error-message');
+    
+    errorElement.innerHTML = `
+      <p>Hata: ${message || 'Bir hata oluştu'}</p>
+    `;
+    
+    this.container.innerHTML = '';
+    this.container.appendChild(errorElement);
+  }
+
 }
 
 new UserManager(appendLocation);
