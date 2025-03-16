@@ -424,14 +424,18 @@ class UserManager {
     this.container.innerHTML = '';
     
     if (!users?.length) {
-        this.showReloadButton();
-        return;
+      this.showReloadButton();
+      return;
     }
+    
+    const fragment = document.createDocumentFragment();
     
     users.forEach(user => {
       const userElement = this.createUserElement(user);
-      this.container.appendChild(userElement);
+      fragment.appendChild(userElement);
     });
+    
+    this.container.appendChild(fragment);
   }
 
   createUserElement(user) {
@@ -445,8 +449,11 @@ class UserManager {
     const email = user.email || 'E-posta yok';
     const phone = user.phone || 'Telefon yok';
     const website = user.website || 'Website yok';
+    const company = user.company?.name || 'Şirket yok';
+    const address = user.address ? 
+      `${user.address.street || ''}, ${user.address.city || ''}` : 'Adres yok';
     
-    const avatarUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=random`;
+    const avatarUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=random&size=256&bold=true&format=svg`;
     
     userCard.innerHTML = `
       <img src="${avatarUrl}" alt="${name}" class="user-avatar">
@@ -455,6 +462,8 @@ class UserManager {
         <p><i class="far fa-envelope"></i> ${email}</p>
         <p><i class="fas fa-phone"></i> ${phone}</p>
         <p><i class="fas fa-globe"></i> ${website}</p>
+        <p><i class="fas fa-building"></i> ${company}</p>
+        <p><i class="fas fa-map-marker-alt"></i> ${address}</p>
       </div>
       <button class="delete-user" data-id="${userId}" title="Kullanıcıyı Sil">
         <i class="fas fa-trash"></i>
@@ -484,6 +493,7 @@ class UserManager {
       this.renderUsers(filteredUsers);
     } catch (error) {
       console.error('Kullanıcı silme hatası:', error);
+      this.showError('Kullanıcı silinirken bir hata oluştu');
     }
   }
 
@@ -515,11 +525,12 @@ class UserManager {
     emptyState.classList.add('empty-state');
     
     emptyState.innerHTML = `
-      <div>
+      <div class="no-users-message">
+        <i class="fas fa-users-slash"></i>
         <p>Gösterilecek kullanıcı bulunamadı</p>
         ${!buttonUsed ? 
-          '<button id="reload-users-btn">Kullanıcıları Yeniden Yükle</button>' : 
-          '<p>Bu oturumda yeniden yükleme hakkınızı kullandınız</p>'}
+          '<button id="reload-users-btn" class="reload-btn">Kullanıcıları Yeniden Yükle</button>' : 
+          '<p class="info-text">Bu oturumda yeniden yükleme hakkınızı kullandınız</p>'}
       </div>
     `;
     
@@ -561,13 +572,32 @@ class UserManager {
     errorElement.classList.add('error-message');
     
     errorElement.innerHTML = `
-      <p>Hata: ${message || 'Bir hata oluştu'}</p>
+      <i class="fas fa-exclamation-circle"></i>
+      <p>${message || 'Bir hata oluştu'}</p>
     `;
     
     this.container.innerHTML = '';
     this.container.appendChild(errorElement);
   }
-
 }
 
-new UserManager(appendLocation);
+(() => {
+  console.log("UserManager başlatılıyor...");
+  
+  if (!document.querySelector(appendLocation)) {
+    console.log(`"${appendLocation}" seçicisine sahip bir element bulunamadı, oluşturuluyor...`);
+    const container = document.createElement('div');
+    container.className = appendLocation.replace('.', '');
+    document.body.appendChild(container);
+    console.log(`"${appendLocation}" konteyneri oluşturuldu.`);
+  }
+  
+  try {
+    new UserManager(appendLocation);
+    console.log("UserManager başarıyla başlatıldı!");
+    return "UserManager başarıyla çalışıyor!";
+  } catch (error) {
+    console.error("UserManager başlatılırken hata oluştu:", error);
+    return `HATA: ${error.message}`;
+  }
+})();
