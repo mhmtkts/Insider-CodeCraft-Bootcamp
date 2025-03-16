@@ -344,10 +344,8 @@
               alert("Bu özellik henüz aktif değil!");
             });
 
-            // "Detayları Gör" butonu için olay dinleyici ekleyin (alert olmadan)
             $(document).on("click", ".product-action", function (e) {
               e.stopPropagation();
-              // Burada butona ait ürün kartını bulup, kartın click olayını tetikleyelim
               $(this).closest(".product-card").click();
             });
           },
