@@ -45,13 +45,54 @@ class UserManager {
         --border-radius: 16px;
         --transition: all 0.3s ease;
       }
+
+      html, body {
+        background-color: var(--bg-color);
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+      }
       
       .user {
         font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
-        max-width: 1200px;
+        max-width: 950px;
         margin: 0 auto;
         padding: 25px;
-        background-color: var(--bg-color);
+      }
+
+      .main-title {
+        text-align: center;
+        color: var(--dark-color);
+        font-weight: 700;
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+        position: relative;
+      }
+
+      .subtitle {
+        text-align: center;
+        color: var(--primary-color);
+        font-weight: 500;
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        position: relative;
+        padding-bottom: 15px;
+      }
+
+      .subtitle::after {
+        content: '';
+        position: absolute;
+        width: 100px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--primary-light), var(--primary-color));
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 3px;
+      }
+
+      .user-cards-container {
+        margin-top: 20px;
       }
       
       .user-card {
@@ -59,8 +100,8 @@ class UserManager {
         align-items: center;
         background-color: #ffffff;
         border-radius: var(--border-radius);
-        padding: 1.5rem;
-        margin-bottom: 1.2rem;
+        padding: 1.3rem;
+        margin-bottom: 1rem;
         box-shadow: var(--card-shadow);
         position: relative;
         transition: var(--transition);
@@ -73,8 +114,8 @@ class UserManager {
       }
       
       .user-avatar {
-        width: 100px;
-        height: 100px;
+        width: 85px;
+        height: 85px;
         border-radius: 50%;
         object-fit: cover;
         margin-right: 1.5rem;
@@ -92,19 +133,19 @@ class UserManager {
       }
       
       .user-info h3 {
-        margin: 0 0 0.8rem 0;
-        font-size: 1.2rem;
+        margin: 0 0 0.6rem 0;
+        font-size: 1.1rem;
         color: var(--text-color);
         font-weight: 600;
         letter-spacing: 0.01em;
       }
       
       .user-info p {
-        margin: 0.5rem 0;
+        margin: 0.4rem 0;
         color: var(--text-light);
         display: flex;
         align-items: center;
-        font-size: 0.95rem;
+        font-size: 0.9rem;
         transition: color 0.3s ease;
       }
       
@@ -258,17 +299,25 @@ class UserManager {
       }
       
       @media (max-width: 768px) {
+        .main-title {
+          font-size: 1.7rem;
+        }
+      
+        .subtitle {
+          font-size: 1.1rem;
+        }
+
         .user-card {
           flex-direction: column;
           text-align: center;
-          padding: 1.5rem 1rem;
+          padding: 1.3rem 1rem;
         }
         
         .user-avatar {
           margin-right: 0;
           margin-bottom: 1.2rem;
-          width: 90px;
-          height: 90px;
+          width: 80px;
+          height: 80px;
         }
         
         .user-info p {
@@ -421,7 +470,25 @@ class UserManager {
   renderUsers(users) {
     if (!this.container) return;
     
+    // Önce içeriği temizle
     this.container.innerHTML = '';
+    
+    // Ana başlık ekle
+    const mainTitle = document.createElement('h1');
+    mainTitle.classList.add('main-title');
+    mainTitle.textContent = 'API Kullanıcı Verileri';
+    this.container.appendChild(mainTitle);
+    
+    // Alt başlık ekle
+    const subtitle = document.createElement('h2');
+    subtitle.classList.add('subtitle');
+    subtitle.textContent = 'Kullanıcı Listesi';
+    this.container.appendChild(subtitle);
+    
+    // Kullanıcı kartları için bir konteyner oluştur
+    const cardsContainer = document.createElement('div');
+    cardsContainer.classList.add('user-cards-container');
+    this.container.appendChild(cardsContainer);
     
     if (!users?.length) {
       this.showReloadButton();
@@ -435,7 +502,7 @@ class UserManager {
       fragment.appendChild(userElement);
     });
     
-    this.container.appendChild(fragment);
+    cardsContainer.appendChild(fragment);
   }
 
   createUserElement(user) {
@@ -518,6 +585,9 @@ class UserManager {
   
   showReloadButton() {
     if (!this.container) return;
+
+    const cardsContainer = this.container.querySelector('.user-cards-container');
+    if (!cardsContainer) return;
     
     const buttonUsed = sessionStorage.getItem(STORAGE_KEYS.buttonUsed) === 'true';
     
@@ -534,6 +604,7 @@ class UserManager {
       </div>
     `;
     
+    cardsContainer.innerHTML = '';
     this.container.appendChild(emptyState);
   }
   
@@ -546,6 +617,31 @@ class UserManager {
   showLoading() {
     if (!this.container) return;
     
+    // Kart konteynerin referansını al ya da oluştur
+    let cardsContainer = this.container.querySelector('.user-cards-container');
+    
+    // Eğer başlık ve alt başlık yoksa, onları ekle
+    if (!this.container.querySelector('.main-title')) {
+      const mainTitle = document.createElement('h1');
+      mainTitle.classList.add('main-title');
+      mainTitle.textContent = 'API Kullanıcı Verileri';
+      this.container.appendChild(mainTitle);
+      
+      const subtitle = document.createElement('h2');
+      subtitle.classList.add('subtitle');
+      subtitle.textContent = 'Kullanıcı Listesi';
+      this.container.appendChild(subtitle);
+    }
+    
+    // Kart konteyner yoksa oluştur
+    if (!cardsContainer) {
+      cardsContainer = document.createElement('div');
+      cardsContainer.classList.add('user-cards-container');
+      this.container.appendChild(cardsContainer);
+    } else {
+      cardsContainer.innerHTML = ''; // Sadece kart konteynerin içini temizle
+    }
+    
     const loader = document.createElement('div');
     loader.classList.add('loader');
     
@@ -554,8 +650,7 @@ class UserManager {
       <p>Kullanıcılar yükleniyor...</p>
     `;
     
-    this.container.innerHTML = '';
-    this.container.appendChild(loader);
+    cardsContainer.appendChild(loader);
   }
   
   hideLoading() {
@@ -568,6 +663,31 @@ class UserManager {
   showError(message) {
     if (!this.container) return;
     
+    // Kart konteynerin referansını al ya da oluştur
+    let cardsContainer = this.container.querySelector('.user-cards-container');
+    
+    // Eğer başlık ve alt başlık yoksa, onları ekle
+    if (!this.container.querySelector('.main-title')) {
+      const mainTitle = document.createElement('h1');
+      mainTitle.classList.add('main-title');
+      mainTitle.textContent = 'API Kullanıcı Verileri';
+      this.container.appendChild(mainTitle);
+      
+      const subtitle = document.createElement('h2');
+      subtitle.classList.add('subtitle');
+      subtitle.textContent = 'Kullanıcı Listesi';
+      this.container.appendChild(subtitle);
+    }
+    
+    // Kart konteyner yoksa oluştur
+    if (!cardsContainer) {
+      cardsContainer = document.createElement('div');
+      cardsContainer.classList.add('user-cards-container');
+      this.container.appendChild(cardsContainer);
+    } else {
+      cardsContainer.innerHTML = ''; // Sadece kart konteynerin içini temizle
+    }
+    
     const errorElement = document.createElement('div');
     errorElement.classList.add('error-message');
     
@@ -576,8 +696,7 @@ class UserManager {
       <p>${message || 'Bir hata oluştu'}</p>
     `;
     
-    this.container.innerHTML = '';
-    this.container.appendChild(errorElement);
+    cardsContainer.appendChild(errorElement);
   }
 }
 
