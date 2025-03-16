@@ -18,6 +18,21 @@ class UserManager {
 
   init() {
     this.loadUsers();
+    this.setupEventListeners();
+    this.loadUsers();
+  }
+
+  setupEventListeners() {
+    document.addEventListener('click', e => {
+      if (e.target.closest('.delete-user')) {
+        const button = e.target.closest('.delete-user');
+        this.deleteUser(button.dataset.id);
+      }
+      
+      if (e.target.closest('#reload-users-btn')) {
+        this.handleReloadButtonClick();
+      }
+    });
   }
 
   loadUsers() {
@@ -90,8 +105,8 @@ class UserManager {
     this.container.innerHTML = '';
     
     if (!users?.length) {
-      console.log('Gösterilecek kullanıcı yok');
-      return;
+        this.showReloadButton();
+        return;
     }
     
     users.forEach(user => {
@@ -113,9 +128,80 @@ class UserManager {
     userCard.innerHTML = `
       <h3>${name}</h3>
       <p>${email}</p>
+      <button class="delete-user" data-id="${userId}" title="Kullanıcıyı Sil">
+        Sil
+      </button>
     `;
     
     return userCard;
+  }
+
+  deleteUser(userId) {
+    if (!userId) return;
+    
+    try {
+      const cacheJson = localStorage.getItem(STORAGE_KEYS.users);
+      
+      if (!cacheJson) return;
+      
+      const cache = JSON.parse(cacheJson);
+      
+      if (!cache?.users || !Array.isArray(cache.users)) return;
+      
+      const filteredUsers = cache.users.filter(user => user.id?.toString() !== userId);
+      
+      cache.users = filteredUsers;
+      localStorage.setItem(STORAGE_KEYS.users, JSON.stringify(cache));
+      
+      this.renderUsers(filteredUsers);
+    } catch (error) {
+      console.error('Kullanıcı silme hatası:', error);
+    }
+  }
+
+  setupMutationObserver() {
+    if (!this.container) return;
+    
+    const observer = new MutationObserver(mutations => {
+      for (const mutation of mutations) {
+        if (mutation.type === 'childList') {
+          const isEmpty = this.container.children.length === 0;
+          const hasEmptyState = this.container.querySelector('.empty-state') !== null;
+          
+          if (isEmpty && !hasEmptyState) {
+            this.showReloadButton();
+          }
+        }
+      }
+    });
+    
+    observer.observe(this.container, { childList: true });
+  }
+  
+  showReloadButton() {
+    if (!this.container) return;
+    
+    const buttonUsed = sessionStorage.getItem(STORAGE_KEYS.buttonUsed) === 'true';
+    
+    const emptyState = document.createElement('div');
+    emptyState.classList.add('empty-state');
+    
+    emptyState.innerHTML = `
+      <div>
+        <p>Gösterilecek kullanıcı bulunamadı</p>
+        ${!buttonUsed ? 
+          '<button id="reload-users-btn">Kullanıcıları Yeniden Yükle</button>' : 
+          '<p>Bu oturumda yeniden yükleme hakkınızı kullandınız</p>'}
+      </div>
+    `;
+    
+    this.container.appendChild(emptyState);
+  }
+  
+  handleReloadButtonClick() {
+    sessionStorage.setItem(STORAGE_KEYS.buttonUsed, 'true');
+    localStorage.removeItem(STORAGE_KEYS.users);
+    this.fetchUsers();
   }
 }
 
