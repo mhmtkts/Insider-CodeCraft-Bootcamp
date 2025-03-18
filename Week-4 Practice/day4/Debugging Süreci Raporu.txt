@@ -1,0 +1,98 @@
+Debugging Süreci Raporu
+
+1. Stok Kontrolü Hatası
+
+
+const product = products.find(p => p.id === productId);
+
+Debug ekleyerek süreci adım adım izledim ve aşağıdaki düzeltmeleri yaptım:
+
+1.1) Ürünün stok miktarı kadar ürün eklenmeye çalışıldığında stok güncellenmiyordu ve stok sabit kaldığı için sonsuz ürün ekleniyordu.
+
+Çözüm:
+
+product.stock -= quantity;
+
+
+Bu satırı ekleyerek stok miktarını doğru şekilde azalttım.
+
+1.2) product.stock <= quantity kontrolü sebebiyle stok miktarı kadar ürün eklenmiyordu.
+
+Çözüm:
+
+product.stock < quantity;
+
+
+Şartı güncelleyerek doğru kıyaslama sağlandı.
+
+---
+
+2. Ürün Silme Sırasında Yanlış Stok Hesabı
+
+
+const itemIndex = this.items.findIndex(item => item.productId === productId);
+
+Bu satıra debug ekleyerek ürün silme sürecini inceledim ve aşağıdaki düzeltmeleri yaptım:
+
+2.1)nproduct.stock += 1; sabit artış sebebiyle birden fazla ürün silindiğinde stok sadece 1 artıyordu.
+
+Çözüm:
+
+product.stock += item.quantity;
+
+Silinen miktar kadar stok artışı sağlandı.
+
+2.2) Ürün silindikten sonra sepet güncelleniyordu fakat ürünler listesindeki stok gösterimi değişmiyordu.
+
+Çözüm:
+
+document.dispatchEvent(new Event('stockUpdate'));
+
+Bir event ekleyerek stok değişikliğini UI tarafına yansıttım.
+
+---
+
+3. Toplam Hesaplama Hatası
+
+this.total = this.items.reduce((sum, item) => {
+
+Debug ekleyerek toplam fiyat hesaplamasını inceledim ve aşağıdaki sorunları düzelttim:
+
+3.1) Birden fazla ürün eklendiğinde fiyat yalnızca tek bir ürün fiyatı olarak hesaplanıyordu.
+
+Çözüm:
+
+return sum + (item.price * item.quantity);
+
+Miktar çarpımını ekleyerek toplam hesaplamasını düzelttim.
+
+3.2) İndirim uygulandığında, %10 indirim yerine %90 indirim yapılmış gibi görünüyordu.
+
+Çözüm:
+
+this.total *= 0.9;
+
+İndirim oranını doğru şekilde %10 olarak hesapladım.
+
+---
+
+4. Hata Mesajlarının Birikme Sorunu
+
+const errorElement = document.getElementById('error');
+
+
+Hatalı indirim kodu tekrarlandığında hata mesajları birikiyordu ve ekran kalabalıklaşıyordu. Debug ile sorunu tespit edip çözüm ekledim:
+
+Çözüm:
+
+errorElement.textContent = message;
+setTimeout(() => {
+    errorElement.textContent = '';
+}, 3000);
+
+Yeni bir hata geldiğinde önceki mesajı temizleyip 3 saniye sonra kaybolmasını sağladım.
+
+---
+
+Sonuç: Tüm ana sorunlar tek tek debug ile tespit edilip gerekli kod düzeltmeleri yapıldı. Stok yönetimi, ürün silme, toplam hesaplama ve hata mesajı yönetimi stabil hale getirildi.
+
