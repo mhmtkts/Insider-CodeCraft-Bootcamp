@@ -470,22 +470,18 @@ class UserManager {
   renderUsers(users) {
     if (!this.container) return;
     
-    // Önce içeriği temizle
     this.container.innerHTML = '';
     
-    // Ana başlık ekle
     const mainTitle = document.createElement('h1');
     mainTitle.classList.add('main-title');
     mainTitle.textContent = 'API Kullanıcı Verileri';
     this.container.appendChild(mainTitle);
     
-    // Alt başlık ekle
     const subtitle = document.createElement('h2');
     subtitle.classList.add('subtitle');
     subtitle.textContent = 'Kullanıcı Listesi';
     this.container.appendChild(subtitle);
     
-    // Kullanıcı kartları için bir konteyner oluştur
     const cardsContainer = document.createElement('div');
     cardsContainer.classList.add('user-cards-container');
     this.container.appendChild(cardsContainer);
@@ -617,10 +613,8 @@ class UserManager {
   showLoading() {
     if (!this.container) return;
     
-    // Kart konteynerin referansını al ya da oluştur
     let cardsContainer = this.container.querySelector('.user-cards-container');
     
-    // Eğer başlık ve alt başlık yoksa, onları ekle
     if (!this.container.querySelector('.main-title')) {
       const mainTitle = document.createElement('h1');
       mainTitle.classList.add('main-title');
@@ -633,13 +627,12 @@ class UserManager {
       this.container.appendChild(subtitle);
     }
     
-    // Kart konteyner yoksa oluştur
     if (!cardsContainer) {
       cardsContainer = document.createElement('div');
       cardsContainer.classList.add('user-cards-container');
       this.container.appendChild(cardsContainer);
     } else {
-      cardsContainer.innerHTML = ''; // Sadece kart konteynerin içini temizle
+      cardsContainer.innerHTML = '';
     }
     
     const loader = document.createElement('div');
@@ -663,10 +656,8 @@ class UserManager {
   showError(message) {
     if (!this.container) return;
     
-    // Kart konteynerin referansını al ya da oluştur
     let cardsContainer = this.container.querySelector('.user-cards-container');
     
-    // Eğer başlık ve alt başlık yoksa, onları ekle
     if (!this.container.querySelector('.main-title')) {
       const mainTitle = document.createElement('h1');
       mainTitle.classList.add('main-title');
@@ -679,13 +670,12 @@ class UserManager {
       this.container.appendChild(subtitle);
     }
     
-    // Kart konteyner yoksa oluştur
     if (!cardsContainer) {
       cardsContainer = document.createElement('div');
       cardsContainer.classList.add('user-cards-container');
       this.container.appendChild(cardsContainer);
     } else {
-      cardsContainer.innerHTML = ''; // Sadece kart konteynerin içini temizle
+      cardsContainer.innerHTML = '';
     }
     
     const errorElement = document.createElement('div');
