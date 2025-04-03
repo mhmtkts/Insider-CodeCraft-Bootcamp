@@ -53,7 +53,7 @@ body {
   border: none;
   padding: 0;
   cursor: pointer;
-  margin-right: 15px; /* Profil ikonunun metinden biraz uzaklaşması için */
+  margin-right: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
