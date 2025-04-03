@@ -15,7 +15,7 @@
   --yellow-color: #ffd166;
   --dark-color: #1d3557;
   --text-color: #2b2d42;
-  --heading-color: #1d3557; /* Başlıklar için renk */
+  --heading-color: #1d3557;
   --light-text: #8d99ae;
   --bg-color: #f8f9fa;
   --card-bg: #ffffff;
@@ -39,9 +39,9 @@ body.dark-theme {
   --red-color: #ff6b89;
   --green-color: #22e3b0;
   --yellow-color: #ffe177;
-  --dark-color: #e9ecef; /* Koyu temada açık renk olmalı */
+  --dark-color: #e9ecef;
   --text-color: #e9ecef;
-  --heading-color: #ffffff; /* Koyu temada başlık rengi beyaz */
+  --heading-color: #ffffff;
   --light-text: #b0b5c1;
   --bg-color: #121212;
   --card-bg: #1e1e1e;
