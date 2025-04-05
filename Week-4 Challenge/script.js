@@ -18,7 +18,6 @@ class UserManager {
 
   init() {
     this.injectStyles();
-    this.loadUsers();
     this.setupEventListeners();
     this.loadUsers();
   }
